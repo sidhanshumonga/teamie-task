@@ -1,0 +1,24 @@
+<mat-card class="p-5 m-2 text-center" *ngIf="filtered && users.length === 0">No user found</mat-card>
+
+<p class="px-2 pb-2 text-center" *ngIf="users.length !== 0"><b>Showing : </b>{{ filtered ? 'Users joined between ' + (dates.startDate | date:'MMM dd, yyyy') + ' to ' +  (dates.endDate | date:'MMM dd, yyyy'): 'All users'}}</p>
+<mat-grid-list cols="3" rowHeight="2:1" [gutterSize]="'15px'" rowHeight="11rem">
+    <mat-grid-tile *ngFor="let user of users">
+        <div class="row px-3 py-2 username-row">
+            <div class="col col-lg-10 col-md-10 col-sm-10">
+                <img [src]="user.image" class="mr-2 profile">
+                <b>{{user.fullname}}</b>
+            </div>
+            <div class="col col-lg-2 col-md-2 col-sm-2 pt-1 text-center">{{user.total}}</div>
+        </div>
+        <div class="row px-3 py-3 username-col">
+            <div class="col col-lg-4 col-md-4 col-sm-4 px-4 py-2 text-center">{{user.friends}} <br>Friends</div>
+            <div class="col col-lg-4 col-md-4 col-sm-4 px-4 py-2 text-center">{{user.influence}} <br>Influence</div>
+            <div class="col col-lg-4 col-md-4 col-sm-4 px-4 py-2 text-center">{{user.chirpiness}} <br>Chirpiness</div>
+        </div>
+        <div class="row px-3 py-2 tools-row">
+            <div class="colcol-lg-7 col-md-7 col-sm-7">{{user.join_date | date:'MMM dd, yyyy'}}</div>
+            <div class="col col-lg-5 col-md-5 col-sm-5 text-right"><b><i class="material-icons delete-icon"
+                        (click)="deleteUser(user)"> delete</i></b></div>
+        </div>
+    </mat-grid-tile>
+</mat-grid-list>

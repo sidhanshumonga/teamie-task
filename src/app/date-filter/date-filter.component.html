@@ -1,0 +1,11 @@
+<mat-form-field class="mx-5">
+    <input matInput [matDatepicker]="startDatePicker" placeholder="Start date" (dateChange)="updateDate('startDate', $event)">
+    <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+    <mat-datepicker #startDatePicker></mat-datepicker>
+</mat-form-field>
+
+<mat-form-field class="mx-5">
+    <input matInput [matDatepicker]="endDatePicker" placeholder="End date"  (dateChange)="updateDate('endDate', $event)">
+    <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+    <mat-datepicker #endDatePicker></mat-datepicker>
+</mat-form-field>

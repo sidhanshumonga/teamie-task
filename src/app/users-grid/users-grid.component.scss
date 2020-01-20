@@ -1,0 +1,37 @@
+mat-grid-tile {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  font-family: 'Open Sans', sans-serif;
+  transition: all 500ms ease-in-out;
+}
+
+.mat-grid-tile > .mat-figure {
+  display: block !important;
+}
+
+.username-row {
+  border-bottom: 1px solid lightgray;
+}
+
+.username-col, .tools-row {
+  font-size: 13px;
+}
+
+
+.tools-row { 
+  border-top: 1px solid lightgray;
+}
+
+.delete-icon {
+  font-size: 20px;
+  cursor: pointer;
+  color: #5E1914;
+}
+
+mat-grid-tile:hover {
+  background-color: #efefef;
+  cursor: pointer;
+}
+
+.profile {
+  border-radius: 50%;
+}
