@@ -61,9 +61,9 @@ export class UsersGridComponent implements OnInit {
   }
 
   deleteUser(user: any) {
-    const index = this.allUsers.findIndex(x => x.uid === user.uid);
-    this.allUsers.splice(index, 1);
-    this.users = [...this.allUsers];
+    const index = this.users.findIndex(x => x.uid === user.uid);
+    this.users.splice(index, 1);
+    // this.users = [...this.allUsers];
   }
 
 }
