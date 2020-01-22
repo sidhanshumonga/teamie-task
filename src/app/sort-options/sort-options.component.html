@@ -1,6 +1,6 @@
 <h6>Sort Options:</h6>
 
-<mat-button-toggle-group #sortGroup="matButtonToggleGroup" (change)="updateSorting(sortGroup.value)" value="total" name="sortOptions" aria-label="Sort Options">
+<mat-button-toggle-group #sortGroup="matButtonToggleGroup" (click)="updateSorting(sortGroup.value)" value="total" name="sortOptions" aria-label="Sort Options">
     <mat-button-toggle value="total">Twubric Score</mat-button-toggle>
     <mat-button-toggle value="friends">Friends</mat-button-toggle>
     <mat-button-toggle value="influence">Influence</mat-button-toggle>

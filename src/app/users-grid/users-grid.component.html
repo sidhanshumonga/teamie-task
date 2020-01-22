@@ -1,6 +1,8 @@
 <mat-card class="p-5 m-2 text-center" *ngIf="filtered && users.length === 0">No user found</mat-card>
 
-<p class="px-2 pb-2 text-center" *ngIf="users.length !== 0"><b>Showing : </b>{{ filtered ? 'Users joined between ' + (dates.startDate | date:'MMM dd, yyyy') + ' to ' +  (dates.endDate | date:'MMM dd, yyyy'): 'All users'}}</p>
+<p class="px-2 pb-2 text-center" style="display:inline-block" *ngIf="users.length !== 0"><b>Showing : </b>{{ filtered ? 'Users joined between ' + (dates.startDate | date:'MMM dd, yyyy') + ' to ' +  (dates.endDate | date:'MMM dd, yyyy'): 'All users'}}</p>
+
+<p class="px-2 pb-2 text-center" style="display:inline-block" *ngIf="users.length !== 0"><b>Sort type : </b>{{ sortType ? 'Ascending' : 'Descending' }}</p>
 <mat-grid-list cols="3" rowHeight="2:1" [gutterSize]="'15px'" rowHeight="11rem">
     <mat-grid-tile *ngFor="let user of users">
         <div class="row px-3 py-2 username-row">

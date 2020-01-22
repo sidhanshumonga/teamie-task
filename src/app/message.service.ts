@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Subject, Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import * as Constants from './CONSTANTS'
 
 @Injectable()
 export class MessageService {
@@ -8,10 +10,11 @@ export class MessageService {
   sortingChanged = new Subject<object>();
   datesChanged = new Subject<object>();
 
-  constructor() { }
+  constructor(private httpService: HttpClient) { }
 
-  updateSortOption(sortOption) {
-    this.sorting = sortOption;
+  updateSortOption(sortOption, asc) {
+    this.sorting = { value: sortOption, asc: asc };
+    console.log(this.sorting);
     this.sortingChanged.next(this.sorting);
   }
 
@@ -28,4 +31,8 @@ export class MessageService {
   getUpdatedDates(): Observable<any> {
     return this.datesChanged.asObservable();
   }
+
+  public fetchUsers(): Observable<any> {
+    return this.httpService.get(Constants.baseUrl);
+}
 }

@@ -12,41 +12,52 @@ export class UsersGridComponent implements OnInit {
   public users = [];
   public allUsers = [];
   public dates: any;
+  public sortType: any = true;
   filtered = false;
+  // asc = true;
   constructor(private service: MessageService) {
     this.service.getSortingOption().subscribe(state => {
       if (state) {
+        this.sortType = state.asc;
         this.sortBy(this.users, state);
       }
     });
 
 
     this.service.getUpdatedDates().subscribe(state => {
-      if (state) {
+      if (state.startDate && state.endDate) {
         this.dates = state;
         this.filterBy(this.allUsers, state);
+      } else {
+        this.filtered = false;
+        this.users = [...this.allUsers];
       }
     });
   }
 
   ngOnInit() {
-    this.users = constant.data.map(x => {
-      return {
-        ...x,
-        total: x.twubric.total,
-        friends: x.twubric.friends,
-        influence: x.twubric.influence,
-        chirpiness: x.twubric.chirpiness,
-        join_date: new Date(x.join_date * 1000)
-      };
-    });
-    this.allUsers = [...this.users];
-    this.sortBy(this.users, 'total');
+    this.fetchUsers();
   }
 
+  fetchUsers() {
+    this.service.fetchUsers().subscribe(res => {
+      this.users = res.map(x => {
+        return {
+          ...x,
+          total: x.twubric.total,
+          friends: x.twubric.friends,
+          influence: x.twubric.influence,
+          chirpiness: x.twubric.chirpiness,
+          join_date: new Date(x.join_date * 1000)
+        };
+      });
+      this.allUsers = [...this.users];
+      this.sortBy(this.users, { value: 'total', asc: true });
+    });
+  }
   sortBy(array, key) {
     array.sort((a, b) => {
-      return a[key] - b[key];
+      return key.asc ? a[key.value] - b[key.value] : b[key.value] - a[key.value];
     });
     this.users = [...array];
   }

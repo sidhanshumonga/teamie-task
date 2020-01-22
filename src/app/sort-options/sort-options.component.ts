@@ -7,12 +7,15 @@ import { MessageService } from '../message.service';
   styleUrls: ['./sort-options.component.scss']
 })
 export class SortOptionsComponent implements OnInit {
-
+  asc = true;
+  preSort: string;
   constructor(private service: MessageService) { }
 
   ngOnInit() {
   }
   updateSorting(value) {
-    this.service.updateSortOption(value);
+    this.service.updateSortOption(value, this.preSort !== value ? this.asc : !this.asc);
+    this.asc = this.preSort !== value ? this.asc : !this.asc;
+    this.preSort = value;
   }
 }
